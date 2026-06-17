@@ -1,0 +1,25 @@
+{
+  "name": "parcial-tdd-ics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "lint": "eslint .",
+    "test:cajanegra": "jest",
+    "test:cajablanca": "cucumber-js",
+    "test": "npm run test:cajanegra && npm run test:cajablanca",
+    "build:local": "npm install && npm run lint && npm test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^13.0.0",
+    "eslint": "^10.5.0",
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2"
+  }
+}
