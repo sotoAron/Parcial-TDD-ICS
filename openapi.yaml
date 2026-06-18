@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: API de Sistema de Descuentos
+  version: 1.0.0
+  description: Especificación formal para el cálculo de descuentos (Apertura del ciclo SDD).
+paths:
+  /descuento:
+    post:
+      summary: Calcula el precio final aplicando un porcentaje de descuento.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - precio
+                - porcentaje
+              properties:
+                precio:
+                  type: number
+                  description: Precio original del producto (debe ser mayor a 0).
+                  example: 100
+                porcentaje:
+                  type: number
+                  description: Porcentaje de descuento a aplicar (entre 0 y 100).
+                  example: 15
+      responses:
+        "200":
+          description: Cálculo exitoso. Devuelve el precio final.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - precioFinal
+                properties:
+                  precioFinal:
+                    type: number
+                    description: El precio después de restar el descuento.
+                    example: 85
+        "400":
+          description: Petición incorrecta (faltan datos o formato inválido).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Datos inválidos: 'precio' y 'porcentaje' son requeridos."

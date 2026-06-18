@@ -4,11 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node app.js",
     "lint": "eslint .",
-    "test:cajanegra": "jest",
-    "test:cajablanca": "cucumber-js",
-    "test": "npm run test:cajanegra && npm run test:cajablanca",
+    "test": "jest",
     "build:local": "npm install && npm run lint && npm test"
   },
   "author": "",
@@ -17,9 +15,11 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
-    "@cucumber/cucumber": "^13.0.0",
     "eslint": "^10.5.0",
     "jest": "^30.4.2",
+    "jest-cucumber": "^4.5.0",
+    "jest-openapi": "^0.14.2",
+    "js-yaml": "^4.2.0",
     "supertest": "^7.2.2"
   }
 }
