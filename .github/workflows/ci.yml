@@ -1,0 +1,70 @@
+name: Pipeline CI/CD - Parcial SAD
+
+# El pipeline se activará automáticamente cada vez que hagamos un push a la rama main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # ---------------------------------------------------------
+  # TRABAJO 1: BUILD, TEST Y ANÁLISIS (Integración Continua)
+  # ---------------------------------------------------------
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código del repositorio
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Necesario para que SonarCloud lea el historial de commits
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Instalar dependencias (Gestor de Paquetes npm)
+        run: npm install
+
+      - name: Inspección de sintaxis local (ESLint)
+        run: npm run lint
+        continue-on-error: true # Permite seguir aunque haya advertencias de formato
+
+      - name: Ejecutar Pruebas (Caja Negra y SDD)
+        run: npm test
+
+      - name: Análisis Estático de Seguridad y Calidad (SonarCloud)
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Proporcionado automáticamente por GitHub
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # El token que guardamos en los secretos
+
+  # ---------------------------------------------------------
+  # TRABAJO 2: DESPLIEGUE A PRODUCCIÓN (Entrega Continua)
+  # ---------------------------------------------------------
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-test # Solo se ejecuta si el trabajo anterior (tests y Sonar) fue exitoso
+
+    steps:
+      - name: Disparar despliegue en Render
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+
+  # ---------------------------------------------------------
+  # TRABAJO 3: MECANISMO DE FEEDBACK (Discord)
+  # ---------------------------------------------------------
+  notify:
+    runs-on: ubuntu-latest
+    needs: [build-and-test, deploy]
+    if: always() # Se ejecuta siempre al final, sin importar si los anteriores fallaron o pasaron
+
+    steps:
+      - name: Enviar notificación a Discord
+        run: |
+          if [ "${{ needs.build-and-test.result }}" = "success" ] && [ "${{ needs.deploy.result }}" = "success" ]; then
+            MESSAGE="✅ **ÉXITO**: Nuevo código integrado y desplegado en Producción."
+          else
+            MESSAGE="❌ **FALLO**: El pipeline falló en la Integración o Entrega. Revisa GitHub Actions."
+          fi
+          curl -H "Content-Type: application/json" -d "{\"content\": \"$MESSAGE\"}" ${{ secrets.DISCORD_WEBHOOK }}
