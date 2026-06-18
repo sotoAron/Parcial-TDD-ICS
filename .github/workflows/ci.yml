@@ -37,8 +37,11 @@ jobs:
       - name: Análisis Estático de Seguridad y Calidad (SonarCloud)
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Proporcionado automáticamente por GitHub
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # El token que guardamos en los secretos
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.qualitygate.wait=true
 
   # ---------------------------------------------------------
   # TRABAJO 2: DESPLIEGUE A PRODUCCIÓN (Entrega Continua)
