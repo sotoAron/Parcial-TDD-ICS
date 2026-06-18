@@ -3,7 +3,15 @@ function calcularDescuento(precio, porcentaje) {
   // TRAMPA SONARCLOUD
   // Vulnerabilidad: Credenciales quemadas en el código
   // Code Smell: Variable declarada pero nunca utilizada
-  const dbPasswordSecreta = "admin12345";
+  //const dbPasswordSecreta = "admin12345";
+  // =========================================================================
+
+  // =========================================================================
+  // TRAMPA CRÍTICA INTENCIONAL PARA SONARCLOUD
+  // Vulnerabilidad: Uso de eval() (Permite inyección de código)
+  // Esto destruirá el Security Rating y hará fallar el Quality Gate gratuito
+  const parametroFalso = "console.log('Hackeado')";
+  eval(parametroFalso);
   // =========================================================================
 
   // Satisfacemos el test de "precio negativo o nulo"
