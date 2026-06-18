@@ -28,6 +28,9 @@ app.post("/descuento", (req, res) => {
 
   // Respuesta exitosa según el contrato (Respuesta 200)
   return res.status(200).json({ precioFinal });
+
+  // ERROR! Cambiamos el nombre de la llave a 'totalAPagar'
+  //return res.status(200).json({ totalAPagar: precioFinal });
 });
 
 // =========================================================================

@@ -31,7 +31,7 @@ jobs:
         run: npm run lint
         continue-on-error: true # Permite seguir aunque haya advertencias de formato
 
-      - name: Ejecutar Pruebas (Caja Negra y SDD)
+      - name: Ejecutar Tests
         run: npm test
 
       - name: Análisis Estático de Seguridad y Calidad (SonarCloud)
