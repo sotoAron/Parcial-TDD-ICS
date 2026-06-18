@@ -53,7 +53,7 @@ app.get("/", (req, res) => {
     </head>
     <body>
         <div class="container">
-            <h2 style="text-align: center; margin-top:0;">Calculadora SDD</h2>
+            <h2 style="text-align: center; margin-top:0;">Calculadora de Descuentos</h2>
             <label>Precio Original ($):</label>
             <input type="number" id="precio" required>
             
