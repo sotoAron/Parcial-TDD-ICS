@@ -34,7 +34,7 @@ app.post("/descuento", (req, res) => {
 });
 
 // =========================================================================
-// INTERFAZ VISUAL (Para tu demostración del despliegue en Render)
+// INTERFAZ VISUAL (Render)
 // =========================================================================
 app.get("/", (req, res) => {
   const html = `
