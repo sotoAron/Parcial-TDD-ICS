@@ -1,6 +1,10 @@
 const express = require("express");
 const { calcularDescuento } = require("./calculadora");
+
 const app = express();
+// Oculta la tecnología del servidor por seguridad (Requerido por SonarCloud)
+app.disable("x-powered-by");
+
 const PORT = process.env.PORT || 3000;
 
 // Middleware vital para entender peticiones JSON (Exigido por openapi.yaml)

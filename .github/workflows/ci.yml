@@ -25,7 +25,7 @@ jobs:
           node-version: "18"
 
       - name: Instalar dependencias (Gestor de Paquetes npm)
-        run: npm install
+        run: npm ci --ignore-scripts # Usamos esto en vez de nmp install para evitar instalar versiones no bloqueadas por package-lock.json
 
       - name: Inspección de sintaxis local (ESLint)
         run: npm run lint
