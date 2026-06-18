@@ -3,7 +3,7 @@ function calcularDescuento(precio, porcentaje) {
   // TRAMPA SONARCLOUD
   // Vulnerabilidad: Credenciales quemadas en el código
   // Code Smell: Variable declarada pero nunca utilizada
-  const dbPasswordSecreta = "admin12345";
+  //const dbPasswordSecreta = "admin12345";
   // =========================================================================
 
   // Satisfacemos el test de "precio negativo o nulo"
