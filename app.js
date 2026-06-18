@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SAD - Sistema de Descuentos</title>
+        <title>ICS - Sistema de Descuentos</title>
         <style>
             body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
             .container { background: white; padding: 35px; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
@@ -56,7 +56,7 @@ app.get("/", (req, res) => {
     </head>
     <body>
         <div class="container">
-            <h2 style="text-align: center; margin-top:0;">Calculadora de Descuentos</h2>
+            <h2 style="text-align: center; margin-top:0;">Calculadora de ICS</h2>
             <label>Precio Original ($):</label>
             <input type="number" id="precio" required>
             

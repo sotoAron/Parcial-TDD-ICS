@@ -21,8 +21,8 @@ function calcularDescuento(precio, porcentaje) {
 
   // Satisfacemos la matemática estándar y decimales
   const descuento = (precio * porcentaje) / 100;
-  //return precio - descuento;
-  return precio + descuento; // ¡Error!
+  return precio - descuento;
+  //return precio + descuento; // ¡Error!
 }
 
 // Exportamos la función para que los tests puedan usarla

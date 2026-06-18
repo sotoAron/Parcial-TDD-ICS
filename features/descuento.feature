@@ -6,5 +6,5 @@ Feature: Aplicar descuentos a los productos
   Scenario: Descuento estándar del 10%
     Given un producto que cuesta 100 pesos
     When se le aplica un descuento del 10 por ciento
-    Then el precio final a pagar debe ser 90 pesos
-    # Then el precio final a pagar debe ser 80 pesos
+    # Then el precio final a pagar debe ser 90 pesos
+    Then el precio final a pagar debe ser 80 pesos
