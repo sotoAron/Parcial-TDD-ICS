@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node app.js",
     "lint": "eslint .",
-    "test": "jest",
-    "build:local": "npm install && npm run lint && npm test"
+    "test": "jest --coverage",
+    "comentario": "--coverage se agrega porque sonarcloud exige que las pruebas cumplan cierta cobertura de código para pasar el análisis de calidad",
+    "build:local": "npm ci --ignore-scripts && npm run lint && npm test"
   },
   "author": "",
   "license": "ISC",
